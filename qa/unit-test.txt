@@ -1,0 +1,4 @@
+Test git rev: 5b000f7735953dcbbcfbf7f28dc9d8731c55eaac
+throw expression default parameter: PASSED
+throw expression || (throw condition): PASSED
+throw expression || (no throw condition): PASSED
