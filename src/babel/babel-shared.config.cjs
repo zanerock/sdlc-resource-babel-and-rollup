@@ -34,8 +34,8 @@ if (pkglib.target.isReactish) {
 } */
 
 const babelPlugins = [
-  '@babel/plugin-proposal-class-properties',
-  '@babel/plugin-proposal-optional-chaining',
+  '@babel/plugin-transform-class-properties',
+  '@babel/plugin-transform-optional-chaining',
   '@babel/plugin-proposal-throw-expressions',
   '@babel/plugin-transform-private-methods',
   ['@babel/plugin-transform-runtime',
