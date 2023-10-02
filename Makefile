@@ -1,10 +1,12 @@
 .DELETE_ON_ERROR:
 
+SHELL:=bash
+
 SRC:=src
 DIST:=dist
 QA:=qa
 
-ALL_JS_FILES_SRC:=$(shell find $(SRC) -name "*.mjs" -o -name "*.cjs")
+ALL_JS_FILES_SRC:=$(shell find $(SRC) -name "*.mjs" -o -name "*.cjs" -o -name "*.js")
 
 CONFIG_FILES_SRC:=$(SRC)/babel/babel-shared.config.cjs $(SRC)/babel/babel.config.cjs $(SRC)/rollup/rollup.config.mjs
 CONFIG_FILES_DIST:=$(patsubst $(SRC)/%, $(DIST)/%, $(CONFIG_FILES_SRC))
@@ -14,6 +16,20 @@ default: all
 $(CONFIG_FILES_DIST): $(DIST)/%: $(SRC)/%
 	mkdir -p $(dir $@)
 	cp $< $@
+
+TEST_REPORT:=$(QA)/unit-test.txt
+TEST_PASS_MARKER:=$(QA)/.unit-test-passed
+PRECIOUS_TARGETS+=$(TEST_REPORT)
+
+$(TEST_REPORT) $(TEST_PASS_MARKER) &: package.json $(ALL_JS_FILES_SRC)
+	mkdir -p $(dir $@)
+	echo -n 'Test git rev: ' > $(LINT_REPORT)
+	git rev-parse HEAD >> $(LINT_REPORT)
+	( set -e; set -o pipefail; \
+		node src/test/rollup.test.js | tee -a $(TEST_REPORT); \
+		touch $(TEST_PASS_MARKER) )
+
+test: $(TEST_REPORT) $(TEST_PASS_MARKER)
 
 
 ESLINT:=npx eslint
@@ -44,7 +60,7 @@ lint-fix:
 
 lint: $(LINT_REPORT) $(LINT_PASS_MARKER)
 
-qa: lint
+qa: test lint
 
 build: $(CONFIG_FILES_DIST)
 
@@ -52,4 +68,6 @@ all: build
 
 default: all
 
-.PHONY: all build default lint qa
+.PRECIOUS: $(PRECIOUS_TARGETS)
+
+.PHONY: all build default lint qa test
