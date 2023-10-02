@@ -2,8 +2,15 @@
   "name": "@liquid-labs/catalyst-resource-babel-and-rollup",
   "version": "1.0.0-alpha.0",
   "description": "",
+  "files": [ "dist/" ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "make",
+    "lint": "make lint",
+    "lint:fix": "make lint-fix",
+    "test": "make test",
+    "prepack": "make build",
+    "preversion": "make test && make lint",
+    "qa": "make qa"
   },
   "keywords": [],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
