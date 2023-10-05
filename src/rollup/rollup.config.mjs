@@ -106,13 +106,29 @@ const rollupConfig = {
   }
 }
 
-const licensePath = fsPath.join(process.cwd(), 'LICENSE.txt')
-if (fs.existsSync(licensePath)) {
+const headerConfig = packageJSON.catalyst?.fileHeader
+
+let headerPath = null
+if (headerConfig !== undefined) {
+  const configPath = fsPath.join(...headerConfig.split('/'))
+
+  if (fs.existsSync(configPath)) {
+    headerPath = configPath
+  }
+}
+else {
+  const fileHeader = fsPath.join(process.cwd(), 'src', 'file-header.txt')
+  const licensePath = fsPath.join(process.cwd(), 'LICENSE.txt')
+
+  headerPath = fs.existsSync(fileHeader) ? fileHeader : (fs.existsSync(licensePath) ? licensePath : null)
+}
+
+if (headerPath !== null) {
   rollupConfig.plugins.splice(0, 0, license({
     banner : {
       commentStyle : 'ignored', // tells minifiers to leave it
       content      : {
-        file : licensePath
+        file : headerPath
       }
     }
   }))
