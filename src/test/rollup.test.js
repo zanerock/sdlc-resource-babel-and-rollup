@@ -1,4 +1,4 @@
-// TODO: I tried to implement this with jest, but couldn't get it to work. Not clear why. Did have to enable module 
+// TODO: I tried to implement this with jest, but couldn't get it to work. Not clear why. Did have to enable module
 // support, but that seemed insufficient. We might consider rewriting 'rollup.config.mjs' as cjs and trying agaian.
 
 const loadConfigFile = require('rollup/dist/loadConfigFile.js').loadConfigFile // eslint-disable-line import/extensions
@@ -85,7 +85,7 @@ loadConfigFile(configFile, { input : testInput, output : testOutput })
       }
       // TEST 4
       process.stdout.write("appends 'src/file-header.txt': ")
-      const testOutputContents = readFileSync(testOutputPath, { encoding: 'utf8' })
+      const testOutputContents = readFileSync(testOutputPath, { encoding : 'utf8' })
       if (testOutputContents.match(/Copyright 2023/m)) {
         process.stdout.write('PASSED\n')
       }

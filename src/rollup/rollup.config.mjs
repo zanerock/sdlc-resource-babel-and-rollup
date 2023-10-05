@@ -120,7 +120,7 @@ else {
   const fileHeader = fsPath.join(process.cwd(), 'src', 'file-header.txt')
   const licensePath = fsPath.join(process.cwd(), 'LICENSE.txt')
 
-  headerPath = fs.existsSync(fileHeader) ? fileHeader : (fs.existsSync(licensePath) ? licensePath : null)  
+  headerPath = fs.existsSync(fileHeader) ? fileHeader : (fs.existsSync(licensePath) ? licensePath : null)
 }
 
 if (headerPath !== null) {
