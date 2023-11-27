@@ -19,7 +19,7 @@ $(CONFIG_FILES_DIST): $(DIST)/%: $(SRC)/%
 	cp $< $@
 
 TEST_REPORT:=$(QA)/unit-test.txt
-TEST_PASS_MARKER:=$(QA)/.unit-test-passed
+TEST_PASS_MARKER:=$(QA)/.unit-test.passed
 PRECIOUS_TARGETS+=$(TEST_REPORT)
 
 $(TEST_REPORT) $(TEST_PASS_MARKER) &: package.json $(ALL_JS_FILES_SRC)

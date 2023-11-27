@@ -1,5 +1,5 @@
 {
-  "name": "@liquid-labs/catalyst-resource-babel-and-rollup",
+  "name": "@liquid-labs/sdlc-resource-babel-and-rollup",
   "version": "1.0.0-alpha.4",
   "description": "",
   "files": [
@@ -17,11 +17,14 @@
   "keywords": [],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "Apache-2.0",
-  "repository": "git+ssh://git@github.com/liquid-labs/catalyst-resource-babel-and-rollup.git",
-  "bugs": {
-    "url": "https://github.com/liquid-labs/catalyst-resource-babel-and-rollup/issues"
+  "repository": {
+    "url": "git+ssh://git@github.com/liquid-labs/sdlc-resource-babel-and-rollup.git",
+    "type": "git"
   },
-  "homepage": "https://github.com/liquid-labs/catalyst-resource-babel-and-rollup#readme",
+  "bugs": {
+    "url": "https://github.com/liquid-labs/sdlc-resource-babel-and-rollup/issues"
+  },
+  "homepage": "https://github.com/liquid-labs/sdlc-resource-babel-and-rollup#readme",
   "dependencies": {
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.3",

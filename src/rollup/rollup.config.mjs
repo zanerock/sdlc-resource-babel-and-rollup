@@ -19,10 +19,6 @@ import { babelPlugins, babelPresets } from '../babel/babel-shared.config.cjs'
 
 const packageJSON = JSON.parse(fs.readFileSync(fsPath.join(process.cwd(), 'package.json')))
 
-// const getTag = (tag) => packageJSON.catalyst && packageJSON.catalyst.tags && packageJSON.catalyst.tags[tag]
-const hasTag = (tag) => !!(packageJSON.catalyst && packageJSON.catalyst.tags && tag in packageJSON.catalyst.tags)
-const localConfig = packageJSON.catalyst && packageJSON.catalyst.rollupConfig
-
 const jsInput = process.env.JS_BUILD_TARGET || 'src/index.js' // default
 const sourcemap = true
 let format = process.env.JS_FORMAT || null // TBD via packageJSON
@@ -32,14 +28,17 @@ const determineOutput = function() {
 
   const file = process.env.JS_OUT
   if (format === null) {
-    format = packageJSON.type === 'module' ? 'es' : 'cjs'
+    format = packageJSON.type === 'module' ? 'es' : 'cjs' // CJS is the default
   }
-  const generatedCode = hasTag('es5-compat') ? 'es5' : 'es2015'
+  // es2015 is the default
+  const generatedCode = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup['es5-compat']
+    ? 'es5'
+    : 'es2015'
 
   if (file !== undefined) {
     output.push({ file, format, generatedCode, sourcemap })
   }
-  else {
+  else { // can generate both commonjs and es5 module if 'module' present
     if (packageJSON.main !== undefined) {
       output.push({
         file : packageJSON.main,
@@ -66,8 +65,9 @@ const output = determineOutput()
 const commonjsConfig = {
   include : ['node_modules/**']
 }
-if (localConfig) {
-  Object.assign(commonjsConfig, localConfig.commonjsConfig)
+const commonJSOverrides = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup.commonjsConfig
+if (commonJSOverrides) {
+  Object.assign(commonjsConfig, commonJSOverrides)
 }
 
 const rollupConfig = {

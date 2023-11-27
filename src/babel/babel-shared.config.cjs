@@ -21,7 +21,7 @@ if (Object.keys(engineTargets).length > 0) {
   Object.assign(presetEnvOptions, { targets : engineTargets })
 }
 
-const pkgOverrides = (pkgJSON['catalyst-scripts'] && pkgJSON['catalyst-scripts']['preset-env']) || {}
+const pkgOverrides = (pkgJSON._sdlc && pkgJSON._sdlc.babel && pkgJSON._sdlc.babel['preset-env']) || {}
 Object.assign(presetEnvOptions, pkgOverrides)
 
 const babelPresets = [
