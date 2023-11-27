@@ -31,8 +31,8 @@ const determineOutput = function() {
     format = packageJSON.type === 'module' ? 'es' : 'cjs' // CJS is the default
   }
   // es2015 is the default
-  const generatedCode = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup['es5-compat'] 
-    ? 'es5' 
+  const generatedCode = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup['es5-compat']
+    ? 'es5'
     : 'es2015'
 
   if (file !== undefined) {
