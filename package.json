@@ -31,7 +31,6 @@
     "@babel/plugin-proposal-throw-expressions": "^7.23.3",
     "@babel/plugin-syntax-import-assertions": "^7.23.3",
     "@babel/plugin-transform-class-properties": "^7.23.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/plugin-transform-optional-chaining": "^7.23.4",
     "@babel/plugin-transform-private-methods": "^7.23.3",
     "@babel/plugin-transform-runtime": "^7.23.4",
@@ -46,13 +45,23 @@
     "babel-plugin-inline-json-import": "^0.3.2",
     "find-root": "^1.1.0",
     "rollup": "^4.5.2",
-    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.23",
     "rollup-plugin-license": "^3.2.0",
     "rollup-plugin-node-externals": "^6.1.2",
     "semver": "^7.5.4"
   },
   "devDependencies": {
     "eslint": "^8.50.0",
-    "eslint-config-standard": "^17.1.0"
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "_npm-check-plus": {
+    "depcheck": {
+      "ignoreMatches": [
+        "@babel/cli",
+        "@babel/runtime"
+      ]
+    }
   }
 }
