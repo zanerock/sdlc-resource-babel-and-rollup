@@ -87,9 +87,7 @@ const rollupConfig = {
       presets      : babelPresets,
       plugins      : babelPlugins
     }),
-    // The default extensions include the ones we really need, as well as others that are probably useful for
-    // compatability.
-    resolve({ /* extensions: [ '.js', '.jsx', 'json' ], */ preferBuiltins : true }), // I mean, why not? Seriously... why
+    resolve({ extensions: [ '.js', '.jsx', '.cjs', '.mjs', '.json' ], preferBuiltins : true }), // I mean, why not? Seriously... why
     // not prefer built-ins by default?
     commonjs(commonjsConfig), // TODO: Do we need this?,
     terser({
