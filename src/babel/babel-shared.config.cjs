@@ -26,12 +26,9 @@ Object.assign(presetEnvOptions, pkgOverrides)
 
 const babelPresets = [
   // in testing, we output each file, so we need to convert 'imports', in production, we let rollup handle the imports
-  ['@babel/preset-env', presetEnvOptions]
+  ['@babel/preset-env', presetEnvOptions],
+  '@babel/preset-react'
 ]
-/*
-if (pkglib.target.isReactish) {
-  babelPresets.push('@babel/preset-react')
-} */
 
 const babelPlugins = [
   '@babel/plugin-transform-class-properties',
