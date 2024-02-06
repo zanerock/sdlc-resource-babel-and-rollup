@@ -9,7 +9,7 @@ TEST_STAGING:=test-staging
 
 ALL_JS_FILES_SRC:=$(shell find $(SRC) -name "*.mjs" -o -name "*.cjs" -o -name "*.js")
 
-CONFIG_FILES_SRC:=$(SRC)/babel/babel-shared.config.cjs $(SRC)/babel/babel.config.cjs $(SRC)/rollup/rollup.config.mjs
+CONFIG_FILES_SRC:=$(SRC)/index.cjs $(SRC)/babel/babel-shared.config.cjs $(SRC)/babel/babel.config.cjs $(SRC)/rollup/rollup.config.mjs
 CONFIG_FILES_DIST:=$(patsubst $(SRC)/%, $(DIST)/%, $(CONFIG_FILES_SRC))
 
 default: all
