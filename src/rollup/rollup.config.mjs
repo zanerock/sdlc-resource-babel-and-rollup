@@ -11,6 +11,7 @@ import license from 'rollup-plugin-license'
 // Teaches rollup to treat `import * as fs from 'fs'` and similar as known externals. This license is conditionally
 // included depending on the declared package type.
 import nodeExternals from 'rollup-plugin-node-externals'
+import reactExternals from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import url from '@rollup/plugin-url'
@@ -77,7 +78,7 @@ const rollupConfig = {
     clearScreen : false
   },
   plugins : [
-    nodeExternals(), // this will bundle devDepndencies and nothing else; also marks node builtins as external
+    nodeExternals(), // this will bundle devDepndencies and nothing else; also marks node builtins as external,
     json(),
     url(),
     // Use babel for transpiling.
@@ -102,6 +103,12 @@ const rollupConfig = {
     if (warning.code === 'THIS_IS_UNDEFINED') return
     console.error(warning.message)
   }
+}
+
+const usesReact = 'react' in packageJSON.peerDependencies || 'react' in packageJSON.dependencies
+if (useReact) {
+  rollupConfig.plugins.splice(1, 0, reactExternals())
+  rollupConfig.external = ['react', 'react-dom'],
 }
 
 const headerConfig = packageJSON.catalyst?.fileHeader
