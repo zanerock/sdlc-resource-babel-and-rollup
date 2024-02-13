@@ -30,7 +30,7 @@ $(TEST_REPORT) $(TEST_PASS_MARKER) &: package.json $(ALL_JS_FILES_SRC)
 		node src/test/rollup.test.js | tee -a $(TEST_REPORT); \
 		touch $(TEST_PASS_MARKER) )
 
-test: $(TEST_REPORT) $(TEST_PASS_MARKER)
+test: build $(TEST_REPORT) $(TEST_PASS_MARKER)
 
 
 ESLINT:=npx eslint
