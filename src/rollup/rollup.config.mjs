@@ -18,7 +18,16 @@ import url from '@rollup/plugin-url'
 
 import { babelPlugins, babelPresets } from '../babel/babel-shared.config.cjs'
 
-const packageJSON = JSON.parse(fs.readFileSync(fsPath.join(process.cwd(), 'package.json')))
+let packageJSONPath = process.env.JS_PACKAGE_PATH || process.cwd()
+if (packageJSONPath.endsWith('package.json') === false) {
+  packageJSONPath = fsPath.resolve(packageJSONPath, 'package.json')
+}
+if (fs.existsSync(packageJSONPath) === false) {
+  throw new Error(`Did not find required package file on path: ${packageJSONPath}. Do you need to set or correct 'JS_PACKAGE_PATH'?`)
+}
+const packageJSON = JSON.parse(fs.readFileSync(packageJSONPath))
+
+const nodeModulesDir = fs.dirname(packageJSONPath)
 
 const jsInput = process.env.JS_BUILD_TARGET || 'src/index.js' // default
 const sourcemap = true
@@ -64,7 +73,7 @@ const determineOutput = function() {
 const output = determineOutput()
 
 const commonjsConfig = {
-  include : ['node_modules/**']
+  include : [ nodeModulesDir + '/node_modules/**']
 }
 const commonJSOverrides = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup.commonjsConfig
 if (commonJSOverrides) {
