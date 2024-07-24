@@ -1,6 +1,6 @@
 {
   "name": "@liquid-labs/sdlc-resource-babel-and-rollup",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "",
   "main": "dist/index.cjs",
   "type": "commonjs",
