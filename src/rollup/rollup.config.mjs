@@ -72,8 +72,8 @@ const determineOutput = function() {
 
 const output = determineOutput()
 
-const includePaths = [ nodeModulesDir + '/node_modules/**']
-// say we have sub-project with a package, se we set JS_PACKAGE_PATH src/tool or whatever, but when rollup runs, the 
+const includePaths = [nodeModulesDir + '/node_modules/**']
+// say we have sub-project with a package, se we set JS_PACKAGE_PATH src/tool or whatever, but when rollup runs, the
 // babel resources will be installed in the root node_modules.
 if (nodeModulesDir !== fsPath.resolve(process.cwd())) {
   includePaths.push(process.cwd() + '/node_modules/**')
