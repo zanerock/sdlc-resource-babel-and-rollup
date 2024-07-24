@@ -27,7 +27,7 @@ if (fs.existsSync(packageJSONPath) === false) {
 }
 const packageJSON = JSON.parse(fs.readFileSync(packageJSONPath))
 
-const nodeModulesDir = fs.dirname(packageJSONPath)
+const nodeModulesDir = fsPath.dirname(packageJSONPath)
 
 const jsInput = process.env.JS_BUILD_TARGET || 'src/index.js' // default
 const sourcemap = true
@@ -72,8 +72,15 @@ const determineOutput = function() {
 
 const output = determineOutput()
 
+const includePaths = [ nodeModulesDir + '/node_modules/**']
+// say we have sub-project with a package, se we set JS_PACKAGE_PATH src/tool or whatever, but when rollup runs, the 
+// babel resources will be installed in the root node_modules.
+if (nodeModulesDir !== fsPath.resolve(process.cwd())) {
+  includePaths.push(process.cwd() + '/node_modules/**')
+}
+
 const commonjsConfig = {
-  include : [ nodeModulesDir + '/node_modules/**']
+  include : includePaths
 }
 const commonJSOverrides = packageJSON._sdlc && packageJSON._sdlc.rollup && packageJSON._sdlc.rollup.commonjsConfig
 if (commonJSOverrides) {
