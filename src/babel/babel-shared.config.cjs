@@ -6,9 +6,9 @@ const semver = require('semver')
 
 const NODE_ENV = process.env.NODE_ENV
 
-const presetEnvOptions = { 
+const presetEnvOptions = {
   // in the test environment, we always compile to commonjs
-  modules : NODE_ENV === 'test' ? 'commonjs' : false 
+  modules : NODE_ENV === 'test' ? 'commonjs' : false
 }
 
 const npmRoot = findRoot(process.cwd())
@@ -39,7 +39,7 @@ const babelPlugins = [
   '@babel/plugin-proposal-throw-expressions',
   '@babel/plugin-transform-private-methods',
   ['@babel/plugin-transform-runtime', // helps save on codesize by re-using injected helper code
-    { corejs : false, helpers : true, regenerator : true }, // re corejs, see polyfill plugin below
+    { corejs : false, helpers : true, regenerator : true } // re corejs, see polyfill plugin below
   ],
   '@babel/plugin-syntax-import-assertions',
   'inline-json-import'
