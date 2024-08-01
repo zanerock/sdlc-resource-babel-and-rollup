@@ -6,7 +6,10 @@ const semver = require('semver')
 
 const NODE_ENV = process.env.NODE_ENV
 
-const presetEnvOptions = { modules : NODE_ENV === 'test' ? 'commonjs' : false }
+const presetEnvOptions = { 
+  // in the test environment, we always compile to commonjs
+  modules : NODE_ENV === 'test' ? 'commonjs' : false 
+}
 
 const npmRoot = findRoot(process.cwd())
 const pkgJSON = JSON.parse(readFileSync(join(npmRoot, 'package.json'), { encoding : 'utf8' }))
@@ -35,8 +38,8 @@ const babelPlugins = [
   '@babel/plugin-transform-optional-chaining',
   '@babel/plugin-proposal-throw-expressions',
   '@babel/plugin-transform-private-methods',
-  ['@babel/plugin-transform-runtime',
-    { corejs : false, helpers : true, regenerator : true }
+  ['@babel/plugin-transform-runtime', // helps save on codesize by re-using injected helper code
+    { corejs : false, helpers : true, regenerator : true }, // re corejs, see polyfill plugin below
   ],
   '@babel/plugin-syntax-import-assertions',
   'inline-json-import'
