@@ -1,6 +1,8 @@
 import * as fs from 'node:fs'
 import * as fsPath from 'node:path'
 
+import findRoot from 'find-root'
+
 // Let's rollup work with babel.
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
@@ -18,7 +20,7 @@ import url from '@rollup/plugin-url'
 
 import { babelPlugins, babelPresets } from '../babel/babel-shared.config.cjs'
 
-let packageJSONPath = process.env.JS_PACKAGE_PATH || process.cwd()
+let packageJSONPath = process.env.JS_PACKAGE_PATH || findRoot(process.cwd())
 if (packageJSONPath.endsWith('package.json') === false) {
   packageJSONPath = fsPath.resolve(packageJSONPath, 'package.json')
 }
@@ -53,7 +55,7 @@ const determineOutput = function() {
       output.push({
         file : packageJSON.main,
         format,
-        generatedCode,
+        // generatedCode,
         sourcemap
       })
     }
@@ -61,7 +63,7 @@ const determineOutput = function() {
       output.push({
         file   : packageJSON.module,
         format : 'es',
-        generatedCode,
+        // generatedCode,
         sourcemap
       })
     }

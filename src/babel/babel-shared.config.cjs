@@ -34,10 +34,7 @@ const babelPresets = [
 ]
 
 const babelPlugins = [
-  '@babel/plugin-transform-class-properties',
-  '@babel/plugin-transform-optional-chaining',
   '@babel/plugin-proposal-throw-expressions',
-  '@babel/plugin-transform-private-methods',
   ['@babel/plugin-transform-runtime', // helps save on codesize by re-using injected helper code
     { corejs : false, helpers : true, regenerator : true } // re corejs, see polyfill plugin below
   ],
