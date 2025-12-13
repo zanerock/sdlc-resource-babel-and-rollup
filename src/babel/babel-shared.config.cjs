@@ -47,7 +47,7 @@ const babelPlugins = [
     { corejs : false, helpers : true, regenerator : true } // re corejs, see polyfill plugin below
   ],
   '@babel/plugin-syntax-import-assertions',
-  "babel-plugin-transform-import-meta",
+  'babel-plugin-transform-import-meta',
   'inline-json-import'
 ]
 
