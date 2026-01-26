@@ -38,7 +38,9 @@ Object.assign(presetEnvOptions, pkgOverrides)
 const babelPresets = [
   // in testing, we output each file, so we need to convert 'imports', in production, we let rollup handle the imports
   ['@babel/preset-env', presetEnvOptions],
-  '@babel/preset-react'
+  '@babel/preset-react',
+  // TypeScript support - Babel strips types without type checking, which is ideal for transpilation
+  '@babel/preset-typescript'
 ]
 
 const babelPlugins = [
@@ -62,7 +64,7 @@ if (process.env.NODE_ENV === 'test') {
         _lib : join(process.cwd(), 'test-staging', 'lib'),
         _cli : join(process.cwd(), 'test-staging', 'cli')
       },
-      extensions : ['.js', '.jsx', '.es', '.es6', '.mjs', '.cjs']
+      extensions : ['.js', '.jsx', '.es', '.es6', '.mjs', '.cjs', '.ts', '.tsx']
     }
   ])
 }
