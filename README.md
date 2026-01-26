@@ -1,17 +1,17 @@
-# @liquid-labs/sdlc-resource-babel-and-rollup
+# @sdlcforge/packjs
 
 Configures Babel and Rollup to support modern syntax and proposals in source code while producing optimized, backwards compatible output code.
 
 ## Install
 
 ```bash
-npm i @liquid-labs/sdlc-resource-babel-and-rollup
+npm i @sdlcforge/packjs
 ```
 
 ## Running
 
 ```bash
-npx rollup $(npm explore @liquid-labs/sdlc-resource-babel-and-rollup -- pwd)/dist/rollup/rollup.config.mjs
+npx rollup $(npm explore @sdlcforge/packjs -- pwd)/dist/rollup/rollup.config.mjs
 ```
 
 ## Usage

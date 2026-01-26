@@ -1,5 +1,5 @@
 {
-  "name": "@liquid-labs/sdlc-resource-babel-and-rollup",
+  "name": "@sdlcforge/packjs",
   "version": "1.0.0-alpha.15",
   "description": "",
   "main": "dist/index.cjs",
@@ -20,13 +20,13 @@
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "Apache-2.0",
   "repository": {
-    "url": "git+ssh://git@github.com/liquid-labs/sdlc-resource-babel-and-rollup.git",
+    "url": "git+ssh://git@github.com/sdlcforge/packjs.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/liquid-labs/sdlc-resource-babel-and-rollup/issues"
+    "url": "https://github.com/sdlcforge/packjs/issues"
   },
-  "homepage": "https://github.com/liquid-labs/sdlc-resource-babel-and-rollup#readme",
+  "homepage": "https://github.com/sdlcforge/packjs#readme",
   "dependencies": {
     "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.5",
